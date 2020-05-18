@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener {
     lateinit var listsRecyclerView: RecyclerView
     val listDataManager: ListDataManager = ListDataManager(this)
 
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 // 2
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
 // 3
-        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists)
+        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists,this)
 
 
 
@@ -72,6 +72,8 @@ class MainActivity : AppCompatActivity() {
                     ListSelectionRecyclerViewAdapter
             recyclerAdapter.addList(list)
             dialog.dismiss()
+
+            showListDetail(list)
         }
 // 4
         builder.create().show()
@@ -84,5 +86,11 @@ class MainActivity : AppCompatActivity() {
         listDetailIntent.putExtra(INTENT_LIST_KEY, list)
 // 3
         startActivity(listDetailIntent)
+    }
+    companion object {
+        const val INTENT_LIST_KEY = "list"
+    }
+    override fun listItemClicked(list: TaskList) {
+        showListDetail(list)
     }
 }
