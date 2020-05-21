@@ -81,10 +81,12 @@ class MainActivity : AppCompatActivity(),ListSelectionFragment.OnListItemFragmen
 // 3
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
             val list = TaskList(listTitleEditText.text.toString())
-            listSelectionFragment.addList(list)
-            dialog.dismiss()
 
+            listSelectionFragment.addList(list)
+
+            dialog.dismiss()
             showListDetail(list)
+
         }
 // 4
         builder.create().show()
@@ -146,8 +148,7 @@ class MainActivity : AppCompatActivity(),ListSelectionFragment.OnListItemFragmen
     Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 // 1
-        if (requestCode == LIST_DETAIL_REQUEST_CODE && resultCode ==
-            Activity.RESULT_OK) {
+        if (requestCode == LIST_DETAIL_REQUEST_CODE ) {
 // 2
             data?.let {
 // 3

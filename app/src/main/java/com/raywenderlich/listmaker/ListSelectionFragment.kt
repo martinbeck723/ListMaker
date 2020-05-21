@@ -9,16 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ListSelectionFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListSelectionFragment : Fragment(),ListSelectionRecyclerViewAdapter.ListSelectionRecyclerViewClickListener {
     lateinit var listDataManager: ListDataManager
     lateinit var listsRecyclerView: RecyclerView
@@ -41,8 +31,7 @@ class ListSelectionFragment : Fragment(),ListSelectionRecyclerViewAdapter.ListSe
     // 4
     override fun onCreateView(inflater: LayoutInflater, container:
     ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_list_selection, container,
-            false)
+        return inflater.inflate(R.layout.fragment_list_selection, container, false)
     }
     // 5
     override fun onDetach() {
@@ -58,12 +47,14 @@ class ListSelectionFragment : Fragment(),ListSelectionRecyclerViewAdapter.ListSe
             return ListSelectionFragment()
         }
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val lists = listDataManager.readLists()
         view?.let {
             listsRecyclerView =
-                it.findViewById<RecyclerView>(R.id.lists_recyclerview)
+                it.findViewById(R.id.lists_recyclerview)
             listsRecyclerView.layoutManager = LinearLayoutManager(activity)
             listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists, this)
         }
@@ -73,8 +64,7 @@ class ListSelectionFragment : Fragment(),ListSelectionRecyclerViewAdapter.ListSe
     }
     fun addList(list : TaskList) {
         listDataManager.saveList(list)
-        val recyclerAdapter = listsRecyclerView.adapter as
-                ListSelectionRecyclerViewAdapter
+        val recyclerAdapter = listsRecyclerView.adapter as ListSelectionRecyclerViewAdapter
         recyclerAdapter.addList(list)
     }
     fun saveList(list: TaskList) {
