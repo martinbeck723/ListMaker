@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class ListDetailActivity : AppCompatActivity() {
     lateinit var list: TaskList
     lateinit var listItemsRecyclerView : RecyclerView
+
     lateinit var addTaskButton: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
